@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SettingsProvider } from './context/SettingsContext';
 import { Landing } from './pages/Landing';
 import { UserLayout } from './components/layout/UserLayout';
 import { AshaLayout } from './components/layout/AshaLayout';
@@ -15,33 +16,36 @@ import { Profile } from './pages/user/Profile';
 // Asha Pages
 import { AshaDashboard } from './pages/asha/AshaDashboard';
 import { PatientList } from './pages/asha/PatientList';
+import { Reports } from './pages/asha/Reports';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        
-        {/* User Routes (Responsive Layout) */}
-        <Route path="/user" element={<UserLayout />}>
-          <Route path="home" element={<UserHome />} />
-          <Route path="symptom-checker" element={<SymptomChecker />} />
-          <Route path="tracker" element={<PeriodTracker />} />
-          <Route path="education" element={<Education />} />
-          <Route path="nutrition" element={<NutritionPlanner />} />
-          <Route path="profile" element={<Profile />} />
-          <Route index element={<Navigate to="home" replace />} />
-        </Route>
+    <SettingsProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          
+          {/* User Routes (Responsive Layout) */}
+          <Route path="/user" element={<UserLayout />}>
+            <Route path="home" element={<UserHome />} />
+            <Route path="symptom-checker" element={<SymptomChecker />} />
+            <Route path="tracker" element={<PeriodTracker />} />
+            <Route path="education" element={<Education />} />
+            <Route path="nutrition" element={<NutritionPlanner />} />
+            <Route path="profile" element={<Profile />} />
+            <Route index element={<Navigate to="home" replace />} />
+          </Route>
 
-        {/* Asha Worker Routes (Desktop/Tablet Layout) */}
-        <Route path="/asha" element={<AshaLayout />}>
-          <Route path="dashboard" element={<AshaDashboard />} />
-          <Route path="patients" element={<PatientList />} />
-          <Route path="reports" element={<div className="p-6 text-gray-500">Reports Module - Coming in Phase 2</div>} />
-          <Route index element={<Navigate to="dashboard" replace />} />
-        </Route>
-      </Routes>
-    </Router>
+          {/* Asha Worker Routes (Desktop/Tablet Layout) */}
+          <Route path="/asha" element={<AshaLayout />}>
+            <Route path="dashboard" element={<AshaDashboard />} />
+            <Route path="patients" element={<PatientList />} />
+            <Route path="reports" element={<Reports />} />
+            <Route index element={<Navigate to="dashboard" replace />} />
+          </Route>
+        </Routes>
+      </Router>
+    </SettingsProvider>
   );
 }
 

@@ -1,35 +1,37 @@
 import React from 'react';
 import { Mic, Calendar, PlayCircle, Apple, AlertCircle, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useSettings } from '../../context/SettingsContext';
 
 export const UserHome = () => {
   const navigate = useNavigate();
+  const { t } = useSettings();
 
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Namaste, Radha! 🙏</h1>
-          <p className="text-gray-500">Here is your health summary for today.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">{t('welcome')}, Radha! 🙏</h1>
+          <p className="text-gray-500 dark:text-gray-400">{t('healthSummary')}</p>
         </div>
         <div className="hidden md:block text-right">
-          <p className="text-sm font-bold text-gray-800">Madhubani, Bihar</p>
-          <p className="text-xs text-gray-500">28°C, Sunny</p>
+          <p className="text-sm font-bold text-gray-800 dark:text-gray-200">Madhubani, Bihar</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">28°C, Sunny</p>
         </div>
       </div>
 
       {/* Hero Card */}
       <div className="bg-gradient-to-r from-pink-500 to-orange-400 rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
         <div className="relative z-10 max-w-lg">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">How are you feeling?</h2>
-          <p className="opacity-90 mb-6 text-lg">Tell ASHA about any symptoms or doubts you have today.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">{t('feelingQuestion')}</h2>
+          <p className="opacity-90 mb-6 text-lg">{t('feelingPrompt')}</p>
           <button 
             onClick={() => navigate('/user/symptom-checker')}
             className="bg-white text-pink-600 px-8 py-3 rounded-full font-bold flex items-center gap-3 shadow-lg hover:bg-gray-50 transition-colors"
           >
             <Mic size={20} />
-            Speak to ASHA AI
+            {t('speakToAsha')}
           </button>
         </div>
         {/* Decorative circles */}
@@ -43,17 +45,17 @@ export const UserHome = () => {
         {/* Tracker Card */}
         <div 
           onClick={() => navigate('/user/tracker')} 
-          className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex justify-between items-start mb-4">
-            <div className="h-12 w-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
+            <div className="h-12 w-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform">
               <Calendar size={24} />
             </div>
-            <span className="text-xs font-bold bg-purple-50 text-purple-600 px-2 py-1 rounded-full">Day 12</span>
+            <span className="text-xs font-bold bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full">Day 12</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">Cycle Tracking</h3>
-          <p className="text-sm text-gray-500 mb-4">Next period in 16 days</p>
-          <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+          <h3 className="text-lg font-bold text-gray-800 dark:text-white">{t('cycleTracking')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{t('nextPeriodIn')} 16 {t('days')}</p>
+          <div className="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
             <div className="bg-purple-500 h-full w-[40%]"></div>
           </div>
         </div>
@@ -61,52 +63,52 @@ export const UserHome = () => {
         {/* Nutrition Card */}
         <div 
           onClick={() => navigate('/user/nutrition')} 
-          className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex justify-between items-start mb-4">
-            <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+            <div className="h-12 w-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
               <Apple size={24} />
             </div>
-            <span className="text-xs font-bold bg-green-50 text-green-600 px-2 py-1 rounded-full">Today's Plan</span>
+            <span className="text-xs font-bold bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 px-2 py-1 rounded-full">Today</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">Iron Intake</h3>
-          <p className="text-sm text-gray-500 mb-4">Spinach & Jaggery recommended</p>
-          <div className="flex items-center gap-2 text-xs font-medium text-green-700 bg-green-50 p-2 rounded-lg">
-            <AlertCircle size={14} /> Anemia Prevention
+          <h3 className="text-lg font-bold text-gray-800 dark:text-white">{t('ironIntake')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Spinach & Jaggery</p>
+          <div className="flex items-center gap-2 text-xs font-medium text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-2 rounded-lg">
+            <AlertCircle size={14} /> {t('anemiaPrev')}
           </div>
         </div>
 
         {/* Daily Lesson Card */}
         <div 
           onClick={() => navigate('/user/education')}
-          className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex justify-between items-start mb-4">
-            <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
+            <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
               <PlayCircle size={24} />
             </div>
-            <span className="text-xs font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded-full">New</span>
+            <span className="text-xs font-bold bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full">New</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">Daily Health Tip</h3>
-          <p className="text-sm text-gray-500 mb-4">Why Iron is important?</p>
-          <div className="flex items-center justify-between text-sm text-blue-600 font-medium">
-            <span>Listen Now</span>
+          <h3 className="text-lg font-bold text-gray-800 dark:text-white">{t('dailyTip')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Why Iron is important?</p>
+          <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-medium">
+            <span>{t('listenNow')}</span>
             <ChevronRight size={16} />
           </div>
         </div>
       </div>
 
       {/* Alerts Section */}
-      <div className="bg-red-50 rounded-2xl p-6 border border-red-100 flex flex-col md:flex-row md:items-center gap-4 shadow-sm">
-        <div className="p-3 bg-white rounded-full shadow-sm text-red-500 shrink-0 w-fit">
+      <div className="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 border border-red-100 dark:border-red-900/30 flex flex-col md:flex-row md:items-center gap-4 shadow-sm">
+        <div className="p-3 bg-white dark:bg-red-900/40 rounded-full shadow-sm text-red-500 dark:text-red-400 shrink-0 w-fit">
           <AlertCircle size={24} />
         </div>
         <div className="flex-1">
-          <h4 className="text-lg font-bold text-red-800">IFA Tablet Reminder</h4>
-          <p className="text-sm text-red-600">Don't forget to take your Iron Folic Acid tablet today after lunch. It helps fight fatigue.</p>
+          <h4 className="text-lg font-bold text-red-800 dark:text-red-200">{t('ifaReminder')}</h4>
+          <p className="text-sm text-red-600 dark:text-red-300">{t('takePill')}</p>
         </div>
-        <button className="bg-red-600 text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition-colors text-sm whitespace-nowrap">
-          Mark as Taken
+        <button className="bg-red-600 text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition-colors text-sm whitespace-nowrap shadow-lg shadow-red-200 dark:shadow-none">
+          {t('markTaken')}
         </button>
       </div>
     </div>

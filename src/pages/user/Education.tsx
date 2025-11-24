@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { BookOpen } from 'lucide-react';
 import { AUDIO_LESSONS } from '../../lib/mockData';
 import { AudioPlayer } from '../../components/ui/AudioPlayer';
+import { useSettings } from '../../context/SettingsContext';
 
 export const Education = () => {
+  const { t } = useSettings();
   const [filter, setFilter] = useState('All');
 
   const filteredLessons = filter === 'All' 
@@ -13,9 +15,9 @@ export const Education = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800">Health Library</h2>
-        <div className="bg-white p-2 rounded-full shadow-sm">
-            <BookOpen size={20} className="text-pink-600" />
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white">{t('learn')}</h2>
+        <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-sm">
+            <BookOpen size={20} className="text-pink-600 dark:text-pink-400" />
         </div>
       </div>
 
@@ -28,7 +30,7 @@ export const Education = () => {
             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filter === cat 
                 ? 'bg-pink-600 text-white shadow-md' 
-                : 'bg-white text-gray-600 border border-gray-200'
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
             }`}
           >
             {cat}
