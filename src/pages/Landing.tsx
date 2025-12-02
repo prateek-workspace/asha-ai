@@ -36,10 +36,12 @@ export const Landing = () => {
       {/* Navbar */}
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-100 dark:border-gray-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <div className="bg-pink-600 text-white p-2 rounded-xl shadow-lg shadow-pink-200 dark:shadow-none">
-              <Heart size={24} fill="currentColor" />
-            </div>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+            <img 
+              src="/new pink logo.png" 
+              alt="ASHA AI Logo" 
+              className="h-12 w-12 object-contain"
+            />
             <span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">ASHA AI</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600 dark:text-gray-300">
